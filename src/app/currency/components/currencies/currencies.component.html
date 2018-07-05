@@ -1,0 +1,9 @@
+<h1>Available currencies</h1>
+<sgcib-page-size-selector [pageSize]="pageSize" (pageSizeChange)="changePageSize($event)"></sgcib-page-size-selector>
+<ul>
+  <li *ngFor="let currency of currencies" (click)="goToCurrencyDetails(currency)">
+    <span><label>ID:</label><span class="currency-id">{{getCurrencyId(currency)}}</span></span>
+    <span><label>Type:</label><span class="currency-type">{{getCurrencyType(currency)}}</span></span>
+    <span><label>Symbol:</label><span class="currency-symbole">{{getCurrencySymbol(currency)}}</span></span>
+  </li>
+</ul>
