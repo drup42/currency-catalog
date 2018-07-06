@@ -31,16 +31,4 @@ export class CurrenciesComponent implements OnInit {
   goToCurrencyDetails(currency: Currency) {
     this.router.navigate(['/currency', currency.id]);
   }
-
-  getCurrencyId(currency: Currency): string {
-    return currency.id;
-  }
-
-  getCurrencyType(currency: Currency): string {
-    return currency.attributes.currency_type;
-  }
-
-  getCurrencySymbol(currency: Currency): string {
-    return currency.attributes.symbol;
-  }
 }

@@ -8,6 +8,7 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {environment} from '../../../../environments/environment';
 import {Router} from '@angular/router';
 import {PaginationModule} from '../../../pagination/pagination.module';
+import {By} from '@angular/platform-browser';
 
 describe('CurrenciesComponent', () => {
   let component: CurrenciesComponent;
@@ -54,7 +55,7 @@ describe('CurrenciesComponent', () => {
     expect(debugElement.nativeElement.querySelector('h1').textContent).toContain('Available currencies');
   });
 
-  it('must display 150 first currencies on main page', () => {
+  it('must display 150 first currencies on main page', async(() => {
 
     /*given*/
     fixture.detectChanges();
@@ -93,15 +94,18 @@ describe('CurrenciesComponent', () => {
     /*then*/
     httpTestingController.expectOne({url: expectedUrl, method: 'GET'}).flush(expectedDataResponse);
     expect(component.currencies.length).toBe(2);
-    const currency1 = component.currencies[0];
-    expect(component.getCurrencyId(currency1)).toBe(expectedCurrencyId1);
-    expect(component.getCurrencyType(currency1)).toBe(expectedCurrencyType1);
-    expect(component.getCurrencySymbol(currency1)).toBe(expectedCurrencySymbol1);
-    const currency2 = component.currencies[1];
-    expect(component.getCurrencyId(currency2)).toBe(expectedCurrencyId2);
-    expect(component.getCurrencyType(currency2)).toBe(expectedCurrencyType2);
-    expect(component.getCurrencySymbol(currency2)).toBe(expectedCurrencySymbol2);
-  });
+
+    fixture.detectChanges();
+    debugElement = fixture.debugElement;
+    const currencyIndex1 = 0;
+    expect(debugElement.queryAll(By.css('.currency-id'))[currencyIndex1].nativeElement.textContent).toBe(expectedCurrencyId1);
+    expect(debugElement.queryAll(By.css('.currency-type'))[currencyIndex1].nativeElement.textContent).toBe(expectedCurrencyType1);
+    expect(debugElement.queryAll(By.css('.currency-symbol'))[currencyIndex1].nativeElement.textContent).toBe(expectedCurrencySymbol1);
+    const currencyIndex2 = 1;
+    expect(debugElement.queryAll(By.css('.currency-id'))[currencyIndex2].nativeElement.textContent).toBe(expectedCurrencyId2);
+    expect(debugElement.queryAll(By.css('.currency-type'))[currencyIndex2].nativeElement.textContent).toBe(expectedCurrencyType2);
+    expect(debugElement.queryAll(By.css('.currency-symbol'))[currencyIndex2].nativeElement.textContent).toBe(expectedCurrencySymbol2);
+  }));
 
   it('should change route to go to currency details when click on a currency', () => {
 

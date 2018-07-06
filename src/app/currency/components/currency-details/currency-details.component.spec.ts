@@ -6,6 +6,8 @@ import {ActivatedRoute} from '@angular/router';
 import {RouterTestingModule} from '@angular/router/testing';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {CurrenciesService} from '../../services/currencies.service';
+import {By} from '@angular/platform-browser';
+import {DebugElement} from '@angular/core';
 
 describe('CurrencyDetailsComponent', () => {
   let component: CurrencyDetailsComponent;
@@ -33,8 +35,7 @@ describe('CurrencyDetailsComponent', () => {
     httpTestingController.verify();
   });
 
-  /*TODO : FIX TEST ( httpTestingController.expectOne(...) is not called) */
-  xit('should display data of the selected currency', () => {
+  it('should display data of the selected currency', () => {
 
     /*given*/
     const expectedId = 'expectedId';
@@ -66,17 +67,20 @@ describe('CurrencyDetailsComponent', () => {
 
     /*when*/
     fixture.detectChanges();
-    httpTestingController.expectOne({url: expectedUrl, method: 'GET'}).flush(expectedDataResponse);
 
     /*then*/
-    expect(component.getCurrencyId()).toBe(expectedId);
-    expect(component.getCurrencyName()).toBe(expectedName);
-    expect(component.getCurrencyCode()).toBe(expectedCode);
-    expect(component.getCurrencyType()).toBe(expectedType);
-    expect(component.getCurrencyCodeIsoNumeric3()).toBe(expectedCodeIsoNumeric3);
-    expect(component.getCurrencyCodeIsoAlpha3()).toBe(expectedCodeIsoAlpha3);
-    expect(component.getCurrencySymbol()).toBe(expectedSymbol);
-    expect(component.getCurrencyNativeSymbol()).toBe(expectedNativeSymbol);
-    expect(component.getCurrencyCategory()).toBe(expectedCategory);
+    httpTestingController.expectOne({url: expectedUrl, method: 'GET'}).flush(expectedDataResponse);
+    fixture.detectChanges();
+
+    const debugElement = fixture.debugElement;
+    expect(debugElement.query(By.css('h1')).nativeElement.textContent).toBe(expectedId);
+    expect(debugElement.query(By.css('.currency-code')).nativeElement.textContent).toBe(expectedCode);
+    expect(debugElement.query(By.css('.currency-name')).nativeElement.textContent).toBe(expectedName);
+    expect(debugElement.query(By.css('.currency-type')).nativeElement.textContent).toBe(expectedType);
+    expect(debugElement.query(By.css('.currency-code-iso-numeric3')).nativeElement.textContent).toBe(expectedCodeIsoNumeric3);
+    expect(debugElement.query(By.css('.currency-code-iso-alpha3')).nativeElement.textContent).toBe(expectedCodeIsoAlpha3);
+    expect(debugElement.query(By.css('.currency-symbol')).nativeElement.textContent).toBe(expectedSymbol);
+    expect(debugElement.query(By.css('.currency-native-symbol')).nativeElement.textContent).toBe(expectedNativeSymbol);
+    expect(debugElement.query(By.css('.currency-category')).nativeElement.textContent).toBe(expectedCategory);
   });
 });

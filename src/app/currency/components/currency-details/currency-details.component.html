@@ -1,11 +1,11 @@
-<h1>{{getCurrencyId()}}</h1>
+<h1>{{currency?.id}}</h1>
 <section>
-  <span class="attribute"><label>code:</label><span class="currency-type">{{getCurrencyCode()}}</span></span>
-  <span class="attribute"><label>name:</label><span class="currency-symbole">{{getCurrencyName()}}</span></span>
-  <span class="attribute"><label>currency_type:</label><span class="currency-type">{{getCurrencyType()}}</span></span>
-  <span class="attribute"><label>code_iso_numeric3:</label><span class="currency-symbole">{{getCurrencyCodeIsoNumeric3()}}</span></span>
-  <span class="attribute"><label>code_iso_alpha3:</label><span class="currency-type">{{getCurrencyCodeIsoAlpha3()}}</span></span>
-  <span class="attribute"><label>symbol:</label><span class="currency-symbole">{{getCurrencySymbol()}}</span></span>
-  <span class="attribute"><label>native_symbol:</label><span class="currency-type">{{getCurrencyNativeSymbol()}}</span></span>
-  <span class="attribute"><label>category:</label><span class="currency-symbole">{{getCurrencyCategory()}}</span></span>
+  <span class="attribute"><label>code:</label><span class="currency-code">{{currency?.attributes?.code}}</span></span>
+  <span class="attribute"><label>name:</label><span class="currency-name">{{currency?.attributes?.name}}</span></span>
+  <span class="attribute"><label>currency_type:</label><span class="currency-type">{{currency?.attributes?.currency_type}}</span></span>
+  <span class="attribute"><label>code_iso_numeric3:</label><span class="currency-code-iso-numeric3">{{currency?.attributes?.code_iso_numeric3}}</span></span>
+  <span class="attribute"><label>code_iso_alpha3:</label><span class="currency-code-iso-alpha3">{{currency?.attributes?.code_iso_alpha3}}</span></span>
+  <span class="attribute"><label>symbol:</label><span class="currency-symbol">{{currency?.attributes?.symbol}}</span></span>
+  <span class="attribute"><label>native_symbol:</label><span class="currency-native-symbol">{{currency?.attributes?.native_symbol}}</span></span>
+  <span class="attribute"><label>category:</label><span class="currency-category">{{currency?.attributes?.category}}</span></span>
 </section>

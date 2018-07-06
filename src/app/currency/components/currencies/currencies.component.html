@@ -2,8 +2,8 @@
 <sgcib-page-size-selector [pageSize]="pageSize" (pageSizeChange)="changePageSize($event)"></sgcib-page-size-selector>
 <ul>
   <li *ngFor="let currency of currencies" (click)="goToCurrencyDetails(currency)">
-    <span><label>ID:</label><span class="currency-id">{{getCurrencyId(currency)}}</span></span>
-    <span><label>Type:</label><span class="currency-type">{{getCurrencyType(currency)}}</span></span>
-    <span><label>Symbol:</label><span class="currency-symbole">{{getCurrencySymbol(currency)}}</span></span>
+    <span><label>ID:</label><span class="currency-id">{{currency?.id}}</span></span>
+    <span><label>Type:</label><span class="currency-type">{{currency?.attributes?.currency_type}}</span></span>
+    <span><label>Symbol:</label><span class="currency-symbol">{{currency?.attributes?.symbol}}</span></span>
   </li>
 </ul>
